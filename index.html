@@ -127,18 +127,18 @@
                 </div>
                 <div>
                     <h3 class="font-bold text-slate-900 text-base">RFI Authorization Required</h3>
-                    <p id="rfiAuthSub" class="text-xs text-slate-500">Enter password for Ward / RFI</p>
+                    <p id="rfiAuthSub" class="text-xs text-slate-500">Enter RFI password</p>
                 </div>
             </div>
             
             <form onsubmit="verifyRfiAction(event)" class="space-y-3">
                 <div>
-                    <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5">Ward / RFI Password *</label>
+                    <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5">RFI Password *</label>
                     <input type="password" id="rfiInputPassword" required placeholder="Enter RFI password..."
                         class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:bg-white transition">
                 </div>
                 <div id="rfiAuthError" class="hidden text-xs text-rose-600 font-medium bg-rose-50 p-2 rounded-lg text-center">
-                    Incorrect RFI password for this ward.
+                    Incorrect password for this RFI.
                 </div>
                 <div class="flex justify-end space-x-2 pt-2">
                     <button type="button" onclick="closeRfiModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium rounded-xl transition">
@@ -570,40 +570,49 @@
             }
         }
 
-        // Official Ward, RFI, Sub-Division, AFI and RFI Passwords mapping dataset
+        // Official Ward, RFI, Sub-Division, AFI mapping dataset
         const wardMappingData = [
-            { ward: "2", subDiv: "Fatehgarh S/D", rfi: "Muhammad Naeem", afi: "Muhammad Awais (Ali Siddique)", password: "naeem2" },
-            { ward: "10", subDiv: "Fatehgarh S/D", rfi: "Muhammad Naeem", afi: "Abid Hussain", password: "naeem10" },
-            { ward: "13", subDiv: "Fatehgarh S/D", rfi: "Muhammad Naeem", afi: "Aneel John (Gulraiz Khan)", password: "naeem13" },
-            { ward: "225", subDiv: "Fatehgarh S/D", rfi: "Muhammad Naeem", afi: "Tasawwar Sarwar", password: "naeem225" },
-            { ward: "226", subDiv: "Fatehgarh S/D", rfi: "Muhammad Naeem", afi: "Humayun Rahseed (Muhammad Waseem)", password: "naeem226" },
-            { ward: "227", subDiv: "Fatehgarh S/D", rfi: "Muhammad Naeem", afi: "Babar Mushtaq (Qaiser Iqbal)", password: "naeem227" },
-            { ward: "1", subDiv: "Fatehgarh S/D", rfi: "Kashif Nasir", afi: "Rameez Hassan", password: "kashif1" },
-            { ward: "14", subDiv: "Fatehgarh S/D", rfi: "Kashif Nasir", afi: "Mudasser Ali", password: "kashif14" },
-            { ward: "16", subDiv: "Fatehgarh S/D", rfi: "Kashif Nasir", afi: "Kashif Nasir", password: "kashif16" },
-            { ward: "17", subDiv: "Fatehgarh S/D", rfi: "Kashif Nasir", afi: "Usman Azam", password: "kashif17" },
-            { ward: "222", subDiv: "Fatehgarh S/D", rfi: "Kashif Nasir", afi: "Kashif Nasir", password: "kashif222" },
-            { ward: "20", subDiv: "Fatehgarh S/D", rfi: "Aon Shah", afi: "Adnan Masih", password: "aon20" },
-            { ward: "217", subDiv: "Fatehgarh S/D", rfi: "Aon Shah", afi: "Hafiz Salman Zahid", password: "aon217" },
-            { ward: "219", subDiv: "Fatehgarh S/D", rfi: "Aon Shah", afi: "Zaigham Faheem", password: "aon219" },
-            { ward: "220", subDiv: "Fatehgarh S/D", rfi: "Aon Shah", afi: "Muhammad Umer Sattar", password: "aon220" },
-            { ward: "223", subDiv: "Fatehgarh S/D", rfi: "Aon Shah", afi: "Adnan Masih", password: "aon223" },
-            { ward: "228", subDiv: "Fatehgarh S/D", rfi: "Aon Shah", afi: "Ali Murtaza", password: "aon228" },
-            { ward: "34", subDiv: "Mustafabad S/D", rfi: "Muhammad Sajid", afi: "Arslan Qureshi", password: "sajid34" },
-            { ward: "35", subDiv: "Mustafabad S/D", rfi: "Muhammad Sajid", afi: "Muhammad Sajid", password: "sajid35" },
-            { ward: "241", subDiv: "Mustafabad S/D", rfi: "Muhammad Sajid", afi: "Muhammad Sajid , Waqas", password: "sajid241" },
-            { ward: "36", subDiv: "Tajpura S/D", rfi: "Muhammad Rehan", afi: "Shhabaz Raza, Rana Nauman", password: "rehan36" },
-            { ward: "38", subDiv: "Tajpura S/D", rfi: "Muhammad Rehan", afi: "Naveed Khan, Abdullah", password: "rehan38" },
-            { ward: "40", subDiv: "Tajpura S/D", rfi: "Muhammad Rehan", afi: "Shahbaz Ali", password: "rehan40" },
-            { ward: "41", subDiv: "Tajpura S/D", rfi: "Muhammad Rehan", afi: "Nadeem Butt", password: "rehan41" },
-            { ward: "231", subDiv: "Tajpura S/D", rfi: "Muhammad Rehan", afi: "Farooq e Azam, Muneeb Alam", password: "rehan231" },
-            { ward: "235", subDiv: "Tajpura S/D", rfi: "Muhammad Rehan", afi: "Kamran Ali", password: "rehan235" },
-            { ward: "243", subDiv: "Tajpura S/D", rfi: "Muhammad Rehan", afi: "Ali Raza", password: "rehan243" },
-            { ward: "244", subDiv: "Tajpura S/D", rfi: "Muhammad Rehan", afi: "Hamza Khalid, Kamran", password: "rehan244" },
-            { ward: "245", subDiv: "Tajpura S/D", rfi: "Muhammad Rehan", afi: "Hamza Ali", password: "rehan245" },
-            { ward: "246", subDiv: "Tajpura S/D", rfi: "Muhammad Rehan", afi: "Hussain Sarwar, Muhammad Musa", password: "rehan246" },
-            { ward: "247", subDiv: "Tajpura S/D", rfi: "Muhammad Rehan", afi: "Zubair Ali", password: "rehan247" }
+            { ward: "2", subDiv: "Fatehgarh S/D", rfi: "Muhammad Naeem", afi: "Muhammad Awais (Ali Siddique)" },
+            { ward: "10", subDiv: "Fatehgarh S/D", rfi: "Muhammad Naeem", afi: "Abid Hussain" },
+            { ward: "13", subDiv: "Fatehgarh S/D", rfi: "Muhammad Naeem", afi: "Aneel John (Gulraiz Khan)" },
+            { ward: "225", subDiv: "Fatehgarh S/D", rfi: "Muhammad Naeem", afi: "Tasawwar Sarwar" },
+            { ward: "226", subDiv: "Fatehgarh S/D", rfi: "Muhammad Naeem", afi: "Humayun Rahseed (Muhammad Waseem)" },
+            { ward: "227", subDiv: "Fatehgarh S/D", rfi: "Muhammad Naeem", afi: "Babar Mushtaq (Qaiser Iqbal)" },
+            { ward: "1", subDiv: "Fatehgarh S/D", rfi: "Kashif Nasir", afi: "Rameez Hassan" },
+            { ward: "14", subDiv: "Fatehgarh S/D", rfi: "Kashif Nasir", afi: "Mudasser Ali" },
+            { ward: "16", subDiv: "Fatehgarh S/D", rfi: "Kashif Nasir", afi: "Kashif Nasir" },
+            { ward: "17", subDiv: "Fatehgarh S/D", rfi: "Kashif Nasir", afi: "Usman Azam" },
+            { ward: "222", subDiv: "Fatehgarh S/D", rfi: "Kashif Nasir", afi: "Kashif Nasir" },
+            { ward: "20", subDiv: "Fatehgarh S/D", rfi: "Aon Shah", afi: "Adnan Masih" },
+            { ward: "217", subDiv: "Fatehgarh S/D", rfi: "Aon Shah", afi: "Hafiz Salman Zahid" },
+            { ward: "219", subDiv: "Fatehgarh S/D", rfi: "Aon Shah", afi: "Zaigham Faheem" },
+            { ward: "220", subDiv: "Fatehgarh S/D", rfi: "Aon Shah", afi: "Muhammad Umer Sattar" },
+            { ward: "223", subDiv: "Fatehgarh S/D", rfi: "Aon Shah", afi: "Adnan Masih" },
+            { ward: "228", subDiv: "Fatehgarh S/D", rfi: "Aon Shah", afi: "Ali Murtaza" },
+            { ward: "34", subDiv: "Mustafabad S/D", rfi: "Muhammad Sajid", afi: "Arslan Qureshi" },
+            { ward: "35", subDiv: "Mustafabad S/D", rfi: "Muhammad Sajid", afi: "Muhammad Sajid" },
+            { ward: "241", subDiv: "Mustafabad S/D", rfi: "Muhammad Sajid", afi: "Muhammad Sajid , Waqas" },
+            { ward: "36", subDiv: "Tajpura S/D", rfi: "Muhammad Rehan", afi: "Shhabaz Raza, Rana Nauman" },
+            { ward: "38", subDiv: "Tajpura S/D", rfi: "Muhammad Rehan", afi: "Naveed Khan, Abdullah" },
+            { ward: "40", subDiv: "Tajpura S/D", rfi: "Muhammad Rehan", afi: "Shahbaz Ali" },
+            { ward: "41", subDiv: "Tajpura S/D", rfi: "Muhammad Rehan", afi: "Nadeem Butt" },
+            { ward: "231", subDiv: "Tajpura S/D", rfi: "Muhammad Rehan", afi: "Farooq e Azam, Muneeb Alam" },
+            { ward: "235", subDiv: "Tajpura S/D", rfi: "Muhammad Rehan", afi: "Kamran Ali" },
+            { ward: "243", subDiv: "Tajpura S/D", rfi: "Muhammad Rehan", afi: "Ali Raza" },
+            { ward: "244", subDiv: "Tajpura S/D", rfi: "Muhammad Rehan", afi: "Hamza Khalid, Kamran" },
+            { ward: "245", subDiv: "Tajpura S/D", rfi: "Muhammad Rehan", afi: "Hamza Ali" },
+            { ward: "246", subDiv: "Tajpura S/D", rfi: "Muhammad Rehan", afi: "Hussain Sarwar, Muhammad Musa" },
+            { ward: "247", subDiv: "Tajpura S/D", rfi: "Muhammad Rehan", afi: "Zubair Ali" }
         ];
+
+        // Dedicated Single Password per RFI Name (Easy to manage across all their wards)
+        const rfiPasswords = {
+            "Muhammad Naeem": "naeem123",
+            "Kashif Nasir": "kashif123",
+            "Aon Shah": "aon123",
+            "Muhammad Sajid": "sajid123",
+            "Muhammad Rehan": "rehan123"
+        };
 
         // State Management
         let records = [];
@@ -688,8 +697,8 @@
                 document.getElementById('collectionDate').value = getTodayString();
                 handleWardChange("");
             } else {
-                // If editing, prompt RFI password verification first
-                requestRfiAuth(record.wardNo, record.nameRfi, () => {
+                // Prompt RFI-wise password verification first
+                requestRfiAuth(record.nameRfi, () => {
                     records[editIndex] = record;
                     showToast("Record updated successfully", "success");
                     saveAndRefresh();
@@ -924,16 +933,14 @@
             `;
         }
 
-        // RFI Authentication Flow for Edit & Delete
-        let currentAuthWard = "";
+        // RFI-wise Authentication Flow for Edit & Delete
         let currentAuthRfi = "";
 
-        function requestRfiAuth(wardNo, rfiName, callback) {
-            currentAuthWard = wardNo;
+        function requestRfiAuth(rfiName, callback) {
             currentAuthRfi = rfiName;
             pendingActionCallback = callback;
 
-            document.getElementById('rfiAuthSub').innerText = `Ward ${wardNo} (${rfiName})`;
+            document.getElementById('rfiAuthSub').innerText = `Required Password for RFI: ${rfiName}`;
             document.getElementById('rfiInputPassword').value = "";
             document.getElementById('rfiAuthError').classList.add('hidden');
 
@@ -952,9 +959,9 @@
         function verifyRfiAction(e) {
             e.preventDefault();
             const enteredPass = document.getElementById('rfiInputPassword').value;
-            const matchRow = wardMappingData.find(item => item.ward === currentAuthWard && item.rfi === currentAuthRfi);
+            const correctPass = rfiPasswords[currentAuthRfi];
 
-            if (matchRow && matchRow.password === enteredPass) {
+            if (correctPass && correctPass === enteredPass) {
                 closeRfiModal();
                 if (pendingActionCallback) pendingActionCallback();
             } else {
@@ -965,7 +972,7 @@
 
         function promptEditRecord(index) {
             const r = records[index];
-            requestRfiAuth(r.wardNo, r.nameRfi, () => {
+            requestRfiAuth(r.nameRfi, () => {
                 document.getElementById('editIndex').value = index;
                 document.getElementById('wardNo').value = r.wardNo;
                 handleWardChange(r.wardNo);
@@ -987,7 +994,7 @@
 
         function promptDeleteRecord(index) {
             const r = records[index];
-            requestRfiAuth(r.wardNo, r.nameRfi, () => {
+            requestRfiAuth(r.nameRfi, () => {
                 showConfirmModal("Delete Entry", "Are you sure you want to delete this log entry? This action cannot be undone.", () => {
                     records.splice(index, 1);
                     saveAndRefresh();
